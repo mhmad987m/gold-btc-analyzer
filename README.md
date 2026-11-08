@@ -20,3 +20,5 @@ Binance → Binance Vision → Bybit → Kraken (إذا حُجب مصدر يُس
 الذهب = PAXG (مدعوم بالذهب الفعلي، قد يختلف قليلاً عن XAUUSD).
 
 > أداة تحليل فني وليست نصيحة مالية.
+
+Update
