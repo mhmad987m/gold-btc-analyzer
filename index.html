@@ -1,0 +1,91 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>محلل الذهب والبتكوين</title>
+<style>
+:root{
+  --bg:#0b0f17;--card:#131a26;--card2:#1a2333;--line:#243049;--tx:#e6edf7;--mut:#8b9bb4;
+  --up:#22c55e;--dn:#ef4444;--gold:#f5b942;--blue:#4c9aff;--warn:#f59e0b;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{background:var(--bg);color:var(--tx);font-family:system-ui,-apple-system,"Segoe UI",Tahoma,Arial,sans-serif;line-height:1.55;padding-bottom:40px}
+.wrap{max-width:980px;margin:0 auto;padding:0 12px}
+header{position:sticky;top:0;z-index:10;background:rgba(11,15,23,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--line);padding:10px 0}
+.row{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.title{font-weight:800;font-size:17px;margin-inline-end:auto}
+.title b{color:var(--gold)}
+.seg{display:flex;background:var(--card);border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.seg button{background:none;border:0;color:var(--mut);padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.seg button.on{background:var(--blue);color:#fff;font-weight:700}
+.iconbtn{background:var(--card);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:7px 12px;font:inherit;font-size:13px;cursor:pointer}
+.pricebar{display:flex;align-items:baseline;gap:12px;padding:12px 0 4px;flex-wrap:wrap}
+.price{font-size:30px;font-weight:800;direction:ltr;unicode-bidi:isolate}
+.chg{font-size:14px;direction:ltr;unicode-bidi:isolate}
+.meta{color:var(--mut);font-size:12px;margin-inline-start:auto}
+.tabs{display:flex;gap:6px;overflow-x:auto;padding:8px 0;scrollbar-width:none}
+.tabs::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;background:var(--card);border:1px solid var(--line);color:var(--mut);padding:8px 16px;border-radius:999px;font:inherit;font-size:14px;cursor:pointer}
+.tabs button.on{background:var(--gold);border-color:var(--gold);color:#111;font-weight:800}
+.card{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:14px;margin:10px 0}
+.card h3{font-size:15px;margin-bottom:10px;color:var(--gold)}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px}
+.ltr{direction:ltr;unicode-bidi:isolate;display:inline-block}
+.mut{color:var(--mut)}.up{color:var(--up)}.dn{color:var(--dn)}.warn{color:var(--warn)}
+.tag{display:inline-block;padding:2px 10px;border-radius:999px;font-size:12px;font-weight:700}
+.sbuy2{background:#14532d;color:#86efac}.sbuy{background:#166534;color:#bbf7d0}.lbuy{background:#1d3b2a;color:#86efac}
+.ssell2{background:#7f1d1d;color:#fca5a5}.ssell{background:#991b1b;color:#fecaca}.lsell{background:#3b1d1d;color:#fca5a5}
+.neutral{background:#2a3347;color:#cbd5e1}
+.hero{text-align:center}
+.hero .big{font-size:30px;font-weight:900;margin:6px 0}
+.gauge{position:relative;height:16px;border-radius:99px;background:linear-gradient(90deg,#991b1b,#ef4444 25%,#475569 50%,#22c55e 75%,#166534);margin:16px 6px 6px}
+.gauge i{position:absolute;top:-6px;width:4px;height:28px;background:#fff;border-radius:2px;transform:translateX(-50%);box-shadow:0 0 0 2px #000a}
+.glab{display:flex;justify-content:space-between;font-size:11px;color:var(--mut);padding:0 6px}
+.kv{display:flex;justify-content:space-between;gap:10px;padding:6px 0;border-bottom:1px dashed var(--line);font-size:14px}
+.kv:last-child{border-bottom:0}
+.bar{height:6px;border-radius:9px;background:var(--card2);overflow:hidden;margin-top:4px;position:relative}
+.bar>span{position:absolute;top:0;bottom:0}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th,td{padding:7px 6px;text-align:start;border-bottom:1px solid var(--line)}
+th{color:var(--mut);font-weight:600;font-size:12px}
+.heat{display:grid;grid-template-columns:repeat(auto-fill,minmax(110px,1fr));gap:6px}
+.heat div{border-radius:10px;padding:8px;font-size:12px;text-align:center;border:1px solid #0003}
+.heat b{display:block;font-size:11px;font-weight:600;opacity:.9}
+canvas{width:100%;height:340px;display:block;border-radius:10px;background:#0e1420}
+.err{background:#3b1d1d;border:1px solid #7f1d1d;color:#fecaca;padding:12px;border-radius:12px;margin:10px 0}
+.loading{text-align:center;color:var(--mut);padding:40px 0}
+input{background:var(--card2);border:1px solid var(--line);color:var(--tx);border-radius:10px;padding:9px 10px;font:inherit;width:100%;direction:ltr;text-align:left}
+label{font-size:12px;color:var(--mut);display:block;margin-bottom:4px}
+.warnbox{font-size:12px;color:var(--mut);border:1px solid var(--line);border-radius:12px;padding:10px;margin-top:14px;background:var(--card)}
+.pill{display:inline-block;padding:1px 8px;border-radius:8px;font-size:11px;background:var(--card2);color:var(--mut);margin-inline-start:6px}
+.kz{display:flex;justify-content:space-between;align-items:center;padding:9px 10px;border-radius:10px;background:var(--card2);margin:6px 0;font-size:14px}
+.kz.on{outline:2px solid var(--gold);background:#2b2412}
+</style>
+</head>
+<body>
+<header>
+  <div class="wrap">
+    <div class="row">
+      <div class="title">📊 محلل <b>الذهب</b> والبتكوين</div>
+      <div class="seg" id="symSeg"></div>
+      <div class="seg" id="tfSeg"></div>
+      <button class="iconbtn" id="refresh">⟳ تحديث</button>
+    </div>
+  </div>
+</header>
+<div class="wrap">
+  <div class="pricebar">
+    <div class="price" id="price">—</div>
+    <div class="chg" id="chg"></div>
+    <div class="meta" id="meta"></div>
+  </div>
+  <div class="tabs" id="tabs"></div>
+  <div id="view"><div class="loading">جارٍ تحميل البيانات…</div></div>
+  <div class="warnbox">⚠️ أداة تحليل فني تعليمية للمساعدة في اتخاذ القرار وليست نصيحة مالية. لا توجد أي أداة تضمن الربح؛ التداول — خصوصاً المضاربة والرافعة المالية — ينطوي على مخاطر عالية قد تؤدي لخسارة كامل رأس المال. التزم بوقف الخسارة ولا تخاطر بأكثر مما تتحمل خسارته. الذهب يُحلَّل عبر PAXG (رمز مدعوم بالذهب الفعلي) وقد يختلف قليلاً عن سعر XAUUSD.</div>
+</div>
+<script src="analysis.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
