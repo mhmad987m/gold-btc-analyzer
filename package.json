@@ -1,0 +1,12 @@
+{
+  "name": "gold-btc-analyzer",
+  "version": "2.0.0",
+  "private": true,
+  "description": "محلل الذهب والبتكوين — SMC/ICT + محرك تلاقي 18 مؤشر + MTF",
+  "scripts": {
+    "test": "node test/test.js && node test/ui.test.js && node test/worker.test.mjs",
+    "build": "node build.js",
+    "dev": "npm run build && wrangler dev",
+    "deploy": "npm run test && npm run build && wrangler deploy"
+  }
+}
