@@ -12,7 +12,7 @@ wrangler deploy
 
 ## التطوير
 - `npm test` — اختبارات المحرك
-- `npm run build` — يولّد `src/worker.js` من `public/*` و `src/worker.template.js`
+- `npm run build` — يولّد `/worker.js` من `public/*` و `src/worker.template.js`
 - `npm run dev` — تشغيل محلي
 
 ## مصادر البيانات (تلقائياً بالترتيب)
